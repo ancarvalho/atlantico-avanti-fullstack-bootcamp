@@ -1,6 +1,8 @@
+
+
 -- write a query to list all books published in 2020
 
-SELECT * 
+SELECT title 
 FROM books
 WHERE publication_year = 2020;
 
@@ -78,3 +80,6 @@ FROM authors a
 LEFT JOIN books b ON b.author_id = a.id
 GROUP BY a.id
 HAVING COUNT(b.title) < 1;
+
+
+
