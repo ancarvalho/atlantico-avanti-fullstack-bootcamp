@@ -1,5 +1,5 @@
-DROP TABLE books;
-DROP TABLE authors;
+DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS authors;
 
 
 CREATE TABLE IF NOT EXISTS authors (
