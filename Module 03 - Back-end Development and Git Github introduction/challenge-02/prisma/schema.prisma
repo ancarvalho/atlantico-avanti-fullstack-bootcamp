@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// This is your Prisma schema file
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Place {
+  id           String  @id @default(uuid())
+  name         String
+  address      String
+  neighborhood String?
+  city         String?
+  state        String?
+  country      String?
+  Event        Event[]
+
+  @@unique([name, address, city, state])
+  @@map("places")
+}
+
+model Event {
+  id          String   @id @default(uuid())
+  name        String
+  date        DateTime
+  description String?
+  category    Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
+  category_id String
+  place       Place    @relation(fields: [place_id], references: [id], onDelete: Cascade)
+  place_id    String
+
+  @@unique([name, date, category_id, place_id])
+  @@index([name, description, id, category_id, place_id])
+  @@map("events")
+}
+
+model Category {
+  id    String  @id @default(uuid())
+  name  String  @unique
+  Event Event[]
+
+  @@map("categories")
+}

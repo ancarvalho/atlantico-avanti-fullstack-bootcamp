@@ -1,0 +1,110 @@
+{
+  "places": [
+    {
+      "id": "26994e86-f68e-4c57-80ce-443408710879",
+      "name": "Provinciaal Recreatiedomein De Schorre",
+      "address": "Schommelei 1, 2850 Boom",
+      "city": "Boom",
+      "state": "Antwerp",
+      "country": "Belgium",
+      "neighborhood": "Boom"
+    },
+    {
+      "id": "e4f45f4d-ee79-466f-abff-0689b0ee32bb",
+      "name": "Cidade da Música",
+      "address": "Avenida Senador Teotônio Vilela, número 261",
+      "city": "São Paulo",
+      "state": "São Paulo",
+      "country": "Brasil",
+      "neighborhood": "Interlagos"
+    },
+    {
+      "id": "653d9bb4-da1d-4ef0-896e-db014fe5ee33",
+      "name": "Parque Olímpico de Jacarepaguá",
+      "address": "Parque Olímpico – Barra da Tijuca",
+      "city": "Rio de Janeiro",
+      "state": "Rio de Janeiro",
+      "country": "Brasil",
+      "neighborhood": "Barra da Tijuca"
+    },
+    {
+      "id": "e59d845e-9707-4c44-ba09-d61b7d526705",
+      "name": "Las Vegas Strip",
+      "address": "Las Vegas Strip in Las Vegas, Nevada",
+      "city": "Las Vegas",
+      "state": "Nevada",
+      "country": "USA"
+    },
+    {
+      "id": "8934eed8-4aac-4a26-ae71-186796e2bcb0",
+      "name": "Yas Marina Circuit",
+      "address": "Yas Island, Abu Dhabi",
+      "city": "Abu Dhabi",
+      "state": "UAE",
+      "country": "UAE"
+    },
+    {
+      "id": "2336cb64-d742-470c-8fab-0b909da1ad18",
+      "name": "Autódromo José Carlos Pace",
+      "address": "Av. Sen. Teotônio Vilela, 261 - Interlagos",
+      "neighborhood": "Interlagos",
+      "city": "São Paulo",
+      "state": "São Paulo",
+      "country": "Brasil"
+    }
+  ],
+  "events": [
+    {
+      "name": "Tomorrowland",
+      "date": "2024-07-19 03:00:00",
+      "description": "Electronic Music Festival",
+      "category_id": "1cbcfeb3-0b86-4f46-afd3-306d4e650a1f",
+      "place_id": "26994e86-f68e-4c57-80ce-443408710879"
+    },
+    {
+      "name": "The Town",
+      "date": "2023-09-02 03:00:00",
+      "description": "Electronic Music Festival",
+      "category_id": "1cbcfeb3-0b86-4f46-afd3-306d4e650a1f",
+      "place_id": "e4f45f4d-ee79-466f-abff-0689b0ee32bb"
+    },
+    {
+      "name": "Rock In Rio 2024",
+      "date": "2024-09-13 03:00:00",
+      "description": "Rock Music Festival",
+      "category_id": "1cbcfeb3-0b86-4f46-afd3-306d4e650a1f",
+      "place_id": "653d9bb4-da1d-4ef0-896e-db014fe5ee33"
+    },
+    {
+      "name": "FORMULA 1 LAS VEGAS 2023",
+      "date": "2024-11-19 00:00:00",
+      "description": "FORMULA 1 HEINEKEN SILVER LAS VEGAS GRAND PRIX 2023",
+      "category_id": "8460500f-caf7-4e5c-b145-e6278a5f56c7",
+      "place_id": "e59d845e-9707-4c44-ba09-d61b7d526705"
+    },
+    {
+      "name": "FORMULA 1 ABU Dhabi 2023",
+      "date": "2024-11-19 00:00:00",
+      "description": "FORMULA 1 ETIHAD AIRWAYS ABU DHABI GRAND PRIX 2023",
+      "category_id": "8460500f-caf7-4e5c-b145-e6278a5f56c7",
+      "place_id": "8934eed8-4aac-4a26-ae71-186796e2bcb0"
+    },
+    {
+      "name": "FORMULA 1 SÃO PAULO 2023",
+      "date": "2024-11-19 00:00:00",
+      "description": "FORMULA 1 ROLEX GRANDE PRÊMIO DE SÃO PAULO 2023",
+      "category_id": "8460500f-caf7-4e5c-b145-e6278a5f56c7",
+      "place_id": "2336cb64-d742-470c-8fab-0b909da1ad18"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1cbcfeb3-0b86-4f46-afd3-306d4e650a1f",
+      "name": "Music"
+    },
+    {
+      "id": "8460500f-caf7-4e5c-b145-e6278a5f56c7",
+      "name": "Racing"
+    }
+  ]
+}
