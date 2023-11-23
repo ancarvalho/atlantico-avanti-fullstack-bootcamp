@@ -6,7 +6,7 @@ use anyhow::{Ok, Result};
 use sqlx::PgPool;
 use uuid::Uuid;
 
-use crate::models::category:: Category;
+use crate::models::category::{ Category, UpdateCategory, CreateCategory};
 
 
 pub struct CategoryRepo {
@@ -40,7 +40,7 @@ impl CategoryRepo {
     let category = sqlx::query_as::<_, Category>(
       "
       SELECT *
-      FROM category
+      FROM categories
       ",
     )
     .fetch_all(&self.pool)
@@ -49,10 +49,10 @@ impl CategoryRepo {
     Ok(category)
   }
 
-  pub async fn create_category(&self, category: Category) -> Result<u64> {
+  pub async fn create_category(&self, category: CreateCategory) -> Result<u64> {
     let tx_id = sqlx::query(
       "
-      INSERT INTO category (id, name)
+      INSERT INTO categories (id, name)
       VALUES ($1, $2)
       ",
     )
@@ -65,12 +65,12 @@ impl CategoryRepo {
     Ok(tx_id)
   }
 
-  pub async fn update_category(&self, category: Category, category_id: Uuid) -> Result<u64> {
+  pub async fn update_category(&self, category: UpdateCategory, category_id: Uuid) -> Result<u64> {
     let tx_id = sqlx::query(
       "
-      UPDATE category
+      UPDATE categories
       SET 
-        name = COALESCE($1, name), 
+        name = COALESCE($1, name)
       WHERE id = $2
       ",
     )
@@ -86,7 +86,7 @@ impl CategoryRepo {
   pub async fn delete_category(&self, id: Uuid) -> Result<u64> {
     let tx_id = sqlx::query(
       "
-      DELETE FROM category
+      DELETE FROM categories
       WHERE id = $1
       ",
     )

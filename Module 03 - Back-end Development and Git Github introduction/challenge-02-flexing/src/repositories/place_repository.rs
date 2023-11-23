@@ -6,7 +6,7 @@ use anyhow::{Ok, Result};
 use sqlx::PgPool;
 use uuid::Uuid;
 
-use crate::models::place::Place;
+use crate::models::place::{Place, UpdatePlace, CreatePlace};
 
 
 
@@ -54,7 +54,7 @@ impl PlaceRepo {
 
   
 
-  pub async fn create_place(&self, place: Place) -> Result<u64> {
+  pub async fn create_place(&self, place: CreatePlace) -> Result<u64> {
     let tx_id = sqlx::query(
       "
       INSERT INTO places (id, name, address, city, state, country, neighborhood)
@@ -76,7 +76,7 @@ impl PlaceRepo {
     Ok(tx_id)
   }
 
-  pub async fn update_place(&self, place: Place, place_id: Uuid) -> Result<u64> {
+  pub async fn update_place(&self, place: UpdatePlace, place_id: Uuid) -> Result<u64> {
     let tx_id = sqlx::query(
       "
       UPDATE places
@@ -85,8 +85,8 @@ impl PlaceRepo {
         address = COALESCE($2, address), 
         city = COALESCE($3, city), 
         state = COALESCE($4, state), 
-        country = COALESCE($5, countryd),
-        neighborhood = COALESCE($6, neighborhoodd),
+        country = COALESCE($5, country),
+        neighborhood = COALESCE($6, neighborhood)
       WHERE id = $7
       ",
     )

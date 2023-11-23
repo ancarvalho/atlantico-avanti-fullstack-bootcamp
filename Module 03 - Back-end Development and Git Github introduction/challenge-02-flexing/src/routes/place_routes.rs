@@ -1,14 +1,12 @@
-use std::sync::Arc;
-
 use axum::{Router, routing::{post, get, patch, delete}, body::Body};
 
-use crate::{controllers::place_controller::PlaceController, AppData};
+use crate::{controllers::place_controller::PlaceController,  models::app_data::AppDataArc};
 
 
 pub struct PlaceRouter;
 
 impl PlaceRouter {
-  pub fn new() -> Router<Arc<AppData>, Body>{
+  pub fn new() -> Router<AppDataArc, Body>{
     return Router::new()
       .route("/", post(PlaceController::create_place))
       .route("/all", get(PlaceController::get_all_places))

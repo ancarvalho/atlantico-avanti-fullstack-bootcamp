@@ -19,5 +19,6 @@ pub async fn connect() -> Result<Pool<Postgres>> {
     .connect(&database_url)
     .await?;
 
+ 
   Ok(pool)
 }
