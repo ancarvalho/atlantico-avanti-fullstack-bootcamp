@@ -64,13 +64,13 @@ impl Filters {
       ),
       None => None,
     };
-    println!("{:?}", dates);
+    // println!("{:?}", dates);
     Ok(dates)
   }
 
   fn parse_date(date: &str) -> Result<NaiveDate> {
     let parsed_date = NaiveDate::parse_from_str(date, "%Y-%m-%d")?;
-    println!("{}", parsed_date);
+    // println!("{}", parsed_date);
     Ok(parsed_date)
   }
 

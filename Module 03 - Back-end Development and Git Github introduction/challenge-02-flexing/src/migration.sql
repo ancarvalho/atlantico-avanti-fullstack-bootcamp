@@ -24,8 +24,15 @@ CREATE TABLE IF NOT EXIST events (
   name VARCHAR(120) NOT NULL,
   description TEXT NOT NULL,
   data TIMESTAMP NOT NULL,
-  category_id UUID NOT NULL REFERENCES categories(id),
-  place_id UUID NOT NULL REFERENCES places(id),
-
+  category_id UUID NOT NULL REFERENCES categories(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  place_id UUID NOT NULL REFERENCES places(id) ON DELETE CASCADE ON UPDATE CASCADE,
 
 )
+
+
+-- CreateIndex
+CREATE INDEX "events_name_description_id_category_id_place_id_idx" ON "events"("name", "description", "id", "category_id", "place_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "events_name_date_category_id_place_id_key" ON "events"("name", "date", "category_id", "place_id");
+

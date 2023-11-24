@@ -20,7 +20,7 @@ impl EventRepository {
 
   // TODO 1st dateTime wrong is naive, 2nd cannot bind list, 3rd where is not good, 4th
   pub async fn get_filtered_events(&self, filters: Filters) -> Result<Vec<Event>> {
-    let mut query: QueryBuilder<Postgres> = QueryBuilder::new("SELECT * FROM events ");
+    let mut query: QueryBuilder<Postgres> = QueryBuilder::new("SELECT * FROM events");
 
     let valid = filters.check_all_valid();
 
@@ -35,7 +35,7 @@ impl EventRepository {
     }
 
     if let core::result::Result::Ok(categories) = Filters::check_valid_vec(&filters.categories) {
-      if valid[0] == false {
+      if valid[0] == true {
         query.push(" WHERE");
       } else {
         query.push(" AND");
@@ -48,14 +48,14 @@ impl EventRepository {
       for c in categories.iter() {
         separated.push_bind(c);
       }
-      separated.push_unseparated(") ");
+      separated.push_unseparated(")");
     }
 
     if let core::result::Result::Ok(dates) = Filters::check_valid_vec(&filters.dates) {
-      if valid[0] == false && valid[1] == false {
-        query.push(" WHERE ");
+      if valid[0] == true && valid[1] == true {
+        query.push(" WHERE");
       } else {
-        query.push(" AND ");
+        query.push(" AND");
       }
 
       query.push(" date >= ");

@@ -1,5 +1,3 @@
-
-
 use sqlx::{Pool, Postgres};
 
 use anyhow::{Ok, Result};
@@ -7,9 +5,6 @@ use sqlx::PgPool;
 use uuid::Uuid;
 
 use crate::models::place::{Place, UpdatePlace, CreatePlace};
-
-
-
 
 pub struct PlaceRepo {
   pub pool: Pool<Postgres>,
@@ -47,12 +42,6 @@ impl PlaceRepo {
 
     Ok(places)
   }
- 
-
-
-
-
-  
 
   pub async fn create_place(&self, place: CreatePlace) -> Result<u64> {
     let tx_id = sqlx::query(

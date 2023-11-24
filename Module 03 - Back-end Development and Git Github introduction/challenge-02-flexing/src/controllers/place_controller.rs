@@ -8,7 +8,8 @@ use uuid::Uuid;
 
 use crate::models::{
   app_data::AppDataArc,
-  place::{CreatePlace, UpdatePlace},
+  place::{CreatePlace, Place, UpdatePlace},
+  status,
 };
 
 pub struct PlaceController;
@@ -16,8 +17,20 @@ pub struct PlaceController;
 impl PlaceController {
   pub async fn get_all_places(State(app_data): State<AppDataArc>) -> impl IntoResponse {
     match app_data.place_repo.get_places().await {
-      Ok(places) => Ok(Json(places)),
-      Err(_) => Err(StatusCode::INTERNAL_SERVER_ERROR),
+      Ok(place) => Ok((
+        StatusCode::OK,
+        Json(status::Response::<Vec<Place>>::new_response(
+          "Places Listed Successfully",
+          Some(place),
+        )),
+      )),
+      Err(e) => Err((
+        StatusCode::INTERNAL_SERVER_ERROR,
+        Json(status::Response::<i8>::new_error_response(
+          "Error Listing Places",
+          Some(e.to_string()),
+        )),
+      )),
     }
   }
 
@@ -26,8 +39,20 @@ impl PlaceController {
     Path(place_id): Path<Uuid>,
   ) -> impl IntoResponse {
     match app_data.place_repo.get_place(place_id).await {
-      Ok(place) => Ok(Json(place)),
-      Err(_) => Err(StatusCode::INTERNAL_SERVER_ERROR),
+      Ok(place) => Ok((
+        StatusCode::OK,
+        Json(status::Response::<Place>::new_response(
+          "Place Listed Successfully",
+          Some(place),
+        )),
+      )),
+      Err(e) => Err((
+        StatusCode::INTERNAL_SERVER_ERROR,
+        Json(status::Response::<i8>::new_error_response(
+          "Error Listing Place",
+          Some(e.to_string()),
+        )),
+      )),
     }
   }
 
@@ -36,8 +61,20 @@ impl PlaceController {
     extract::Json(p): extract::Json<CreatePlace>,
   ) -> impl IntoResponse {
     match app_data.place_repo.create_place(p).await {
-      Ok(_) => Ok(StatusCode::CREATED),
-      Err(_) => Err(StatusCode::INTERNAL_SERVER_ERROR),
+      Ok(_) => Ok((
+        StatusCode::CREATED,
+        Json(status::Response::<i8>::new_response(
+          "Place Created Successfully",
+          None,
+        )),
+      )),
+      Err(e) => Err((
+        StatusCode::INTERNAL_SERVER_ERROR,
+        Json(status::Response::<i8>::new_error_response(
+          "Error Creating Place",
+          Some(e.to_string()),
+        )),
+      )),
     }
   }
 
@@ -47,8 +84,20 @@ impl PlaceController {
     extract::Json(p): extract::Json<UpdatePlace>,
   ) -> impl IntoResponse {
     match app_data.place_repo.update_place(p, event_id).await {
-      Ok(_) => Ok(StatusCode::OK),
-      Err(_) => Err(StatusCode::INTERNAL_SERVER_ERROR),
+      Ok(_) => Ok((
+        StatusCode::OK,
+        Json(status::Response::<i8>::new_response(
+          "Place Updated Successfully",
+          None,
+        )),
+      )),
+      Err(e) => Err((
+        StatusCode::INTERNAL_SERVER_ERROR,
+        Json(status::Response::<i8>::new_error_response(
+          "Error Updating Place",
+          Some(e.to_string()),
+        )),
+      )),
     }
   }
 
@@ -57,8 +106,20 @@ impl PlaceController {
     Path(place_id): Path<Uuid>,
   ) -> impl IntoResponse {
     match app_data.place_repo.delete_place(place_id).await {
-      Ok(_) => Ok(StatusCode::OK),
-      Err(_) => Err(StatusCode::INTERNAL_SERVER_ERROR),
+      Ok(_) => Ok((
+        StatusCode::OK,
+        Json(status::Response::<i8>::new_response(
+          "Place Deleted Successfully",
+          None,
+        )),
+      )),
+      Err(e) => Err((
+        StatusCode::INTERNAL_SERVER_ERROR,
+        Json(status::Response::<i8>::new_error_response(
+          "Error Deleting Place",
+          Some(e.to_string()),
+        )),
+      )),
     }
   }
 }

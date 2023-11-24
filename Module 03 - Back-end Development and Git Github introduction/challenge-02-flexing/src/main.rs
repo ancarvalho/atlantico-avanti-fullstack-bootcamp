@@ -1,6 +1,5 @@
 mod controllers;
 mod database;
-mod error;
 mod models;
 mod repositories;
 mod routes;

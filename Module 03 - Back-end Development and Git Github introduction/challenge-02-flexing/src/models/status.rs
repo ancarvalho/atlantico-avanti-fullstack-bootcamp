@@ -1,7 +1,7 @@
 use serde::Serialize;
 
 
-#[derive(Debug, Serialize, )]
+#[derive(Debug, Serialize)]
 pub struct Response<'a, T> {
   pub status: &'a str,
   #[serde(skip_serializing_if="Option::is_none")]
