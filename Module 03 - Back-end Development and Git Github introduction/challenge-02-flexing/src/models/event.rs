@@ -7,6 +7,7 @@ use uuid::Uuid;
 pub struct Event {
   pub id: Uuid,
   pub name: String,
+  #[serde(skip_serializing_if="Option::is_none")]
   pub description: Option<String>,
   pub date: NaiveDateTime,
   pub category_id: Uuid,

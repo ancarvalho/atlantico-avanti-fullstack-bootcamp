@@ -5,10 +5,15 @@ use sqlx::{types::Uuid, FromRow};
 pub struct Place {
     pub id: Uuid,
     pub name: String,
+    #[serde(skip_serializing_if="Option::is_none")]
     pub address: Option<String>,
+    #[serde(skip_serializing_if="Option::is_none")]
     pub city: Option<String>,
+    #[serde(skip_serializing_if="Option::is_none")]
     pub state: Option<String>,
+    #[serde(skip_serializing_if="Option::is_none")]
     pub country: Option<String>,
+    #[serde(skip_serializing_if="Option::is_none")]
     pub neighborhood: Option<String>,
 }
 

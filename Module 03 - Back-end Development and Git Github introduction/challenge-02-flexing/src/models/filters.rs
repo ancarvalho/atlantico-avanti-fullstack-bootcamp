@@ -50,7 +50,7 @@ impl Filters {
       ),
       None => None,
     };
-    println!("{:?}", list);
+    // println!("{:?}", list);
     return Ok(list);
   }
 

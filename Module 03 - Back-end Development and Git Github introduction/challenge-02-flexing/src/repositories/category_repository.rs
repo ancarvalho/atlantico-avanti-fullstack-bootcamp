@@ -25,7 +25,7 @@ impl CategoryRepo {
     let category = sqlx::query_as::<_, Category>(
       "
       SELECT *
-      FROM category
+      FROM categories
       WHERE id = $1
       ",
     )
